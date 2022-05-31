@@ -9,20 +9,17 @@
  * }
  */
 class Solution {
+    ListNode forwardPointer;
     public boolean isPalindrome(ListNode head) {
-        StringBuilder num = new StringBuilder();
-        ListNode cHead = head;
-        while(head!=null){
-            num.append(head.val);
-            head = head.next;
-        }
-        int length = num.length();
-        while(length-- > 0){
-            if(Character.getNumericValue(num.charAt(length)) != cHead.val){
-                return false;
-            }
-            cHead = cHead.next;
-        }
-        return true;  
+        forwardPointer = head;
+        return recursiveCheck(head); 
+    }
+    
+    public boolean recursiveCheck(ListNode node){
+        if(node==null) return true;
+        boolean ans = recursiveCheck(node.next);
+        boolean isEqual = node.val == forwardPointer.val ? true : false;
+        forwardPointer = forwardPointer.next;
+        return isEqual && ans;
     }
 }
