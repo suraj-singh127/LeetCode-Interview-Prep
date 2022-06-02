@@ -10,15 +10,15 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode currentNode = head;
-        ListNode prevNode = null;
-        ListNode nextNode;
-        while(currentNode!=null){
-            nextNode = currentNode.next;
-            currentNode.next = prevNode;
-            prevNode = currentNode;
-            currentNode = nextNode;
-        }
-        return prevNode;
+        ListNode newHead = null;
+        return reverseListR(head,newHead);
+    }
+    
+    //Reversing Linked List Recursively
+    public ListNode reverseListR(ListNode head,ListNode newHead){
+        if(head==null) return newHead;
+        ListNode next = head.next;
+        head.next = newHead;
+        return reverseListR(next,head);
     }
 }
