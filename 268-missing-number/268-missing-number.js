@@ -3,13 +3,10 @@
  * @return {number}
  */
 var missingNumber = function(nums) {
-    let freq = new Array(nums.length+1);
+    let sum = (nums.length)*(nums.length + 1)/2;
+    let arraySum = 0;
     for(let i = 0;i<nums.length;i++){
-        let num = nums[i];
-        freq[num] = 1 || ++freq[nums];
+        arraySum = arraySum + nums[i];
     }
-    for(let i = 1;i<freq.length;i++){
-        if(freq[i]===undefined) return i;
-    }
-    return 0;
+    return sum - arraySum;
 };
